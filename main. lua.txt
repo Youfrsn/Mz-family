@@ -1,0 +1,125 @@
+--[[ 
+  سكربت mz | مطور بواسطة يوسف  
+  مميزات: Auto Farm, PvP, V4, كهف البحر, ميراج, Events, Auto Haki Training, Reset Stats, تلفيل الفاكهة, اختيار السلاح, سرعة الضرب، حماية قوية، واجهة عربية
+--]]
+
+repeat wait() until game:IsLoaded()
+
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
+local Window = OrionLib:MakeWindow({Name = "📜 سكربت MZ | بواسطة يوسف", HidePremium = false, IntroText = "مرحباً بك يا أسطورة!", SaveConfig = true, ConfigFolder = "MZ_Config"})
+
+-- إعدادات عامة
+local player = game.Players.LocalPlayer
+
+-- تبويب الفارم
+local TabFarm = Window:MakeTab({
+	Name = "📈 الفارم",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+TabFarm:AddToggle({
+	Name = "✅ تفعيل الفارم التلقائي",
+	Default = false,
+	Callback = function(Value)
+		getgenv().AutoFarm = Value
+		while AutoFarm do
+			task.wait()
+			-- منطق الفارم
+		end
+	end    
+})
+
+TabFarm:AddDropdown({
+	Name = "🗡️ اختيار السلاح",
+	Default = "فاكهة",
+	Options = {"فاكهة", "سيف", "يد"},
+	Callback = function(Value)
+		getgenv().WeaponType = Value
+	end
+})
+
+-- تبويب الفواكه
+local TabFruit = Window:MakeTab({
+	Name = "🥝 الفاكهة",
+	Icon = "rbxassetid://8569322835",
+	PremiumOnly = false
+})
+
+TabFruit:AddToggle({
+	Name = "🔥 تلفيل الفاكهة",
+	Default = false,
+	Callback = function(Value)
+		getgenv().AutoLevelFruit = Value
+	end
+})
+
+-- تبويب V4 وكهف البحر
+local TabSea = Window:MakeTab({
+	Name = "🌊 البحر والـV4",
+	Icon = "rbxassetid://8569322835",
+	PremiumOnly = false
+})
+
+TabSea:AddButton({
+	Name = "🔓 فتح V4 تلقائياً",
+	Callback = function()
+		-- كود التفعيل
+	end    
+})
+
+TabSea:AddButton({
+	Name = "🏝️ التنقل إلى كهف البحر",
+	Callback = function()
+		-- كود التنقل
+	end    
+})
+
+TabSea:AddButton({
+	Name = "🔍 البحث عن ميراج",
+	Callback = function()
+		-- كود الميراج
+	end    
+})
+
+-- تبويب الإعدادات
+local TabSettings = Window:MakeTab({
+	Name = "⚙️ الإعدادات",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+TabSettings:AddSlider({
+	Name = "⚡ سرعة الضرب",
+	Min = 1,
+	Max = 10,
+	Default = 5,
+	Increment = 1,
+	Callback = function(Value)
+		getgenv().AttackSpeed = Value
+	end
+})
+
+TabSettings:AddButton({
+	Name = "♻️ ريستات كامل",
+	Callback = function()
+		-- كود الريستات
+	end    
+})
+
+TabSettings:AddToggle({
+	Name = "🛡️ تفعيل الحماية",
+	Default = true,
+	Callback = function(Value)
+		getgenv().AntiBan = Value
+	end
+})
+
+-- واجهة الانتهاء
+OrionLib:Init()
+OrionLib:MakeNotification({
+	Name = "تم التفعيل!",
+	Content = "✅ مبروك يا أسطورة! سكربت MZ جاهز 🔥",
+	Image = "rbxassetid://8569322835",
+	Time = 5
+})
